@@ -230,6 +230,12 @@ document.addEventListener("click",e=>{
   const prompt=e.target.closest("[data-assistant]");if(prompt){const ans={pendientes:"Tienes "+data.tasks.filter(x=>!x.done).length+" pendientes en la demo.",vence:"Hay "+data.payments.length+" pagos registrados y documentos que puedes revisar.",semana:"Para la semana: revisa pagos, documentos y los recordatorios pendientes."}[prompt.dataset.assistant];const box=document.querySelector("#assistantAnswer");box.hidden=false;box.textContent=ans;return}
 });
 document.querySelectorAll("[data-add]").forEach(b=>b.addEventListener("click",()=>{const type=b.dataset.add;document.querySelector("#actionModal .modal-body").innerHTML=formMarkup(type);}));
+function resetAddModal(){
+  const modal=document.querySelector("#actionModal");
+  modal.dataset.prefill="";
+  modal.querySelector(".modal-body").innerHTML='<div class="add-options"><button data-add="recordatorio"><i class="fa-regular fa-bell"></i><span><strong>Recordatorio</strong><small>Algo que no quieres olvidar</small></span></button><button data-add="documento"><i class="fa-regular fa-file-lines"></i><span><strong>Documento</strong><small>Guarda una fecha o archivo</small></span></button><button data-add="pago"><i class="fa-solid fa-wallet"></i><span><strong>Pago</strong><small>Una cuenta o suscripción</small></span></button><button data-add="vehiculo"><i class="fa-solid fa-car"></i><span><strong>Vehículo</strong><small>SOAT, revisión o mantenimiento</small></span></button></div>';
+  modal.querySelectorAll("[data-add]").forEach(b=>b.addEventListener("click",()=>{modal.querySelector(".modal-body").innerHTML=formMarkup(b.dataset.add)}));
+}
 document.querySelector("#actionModal").addEventListener("shown.bs.modal",()=>{const modal=document.querySelector("#actionModal");if(!modal.dataset.prefill)return;const type=modal.dataset.prefill;modal.dataset.prefill="";modal.querySelector(".modal-body").innerHTML=formMarkup(type)});
 document.addEventListener("click",e=>{if(e.target.closest("[data-save-form]"))saveForm(document.querySelector("#actionModal .modal-body .form-panel strong")?.textContent==="Nuevo documento"?"documento":document.querySelector("#actionModal .modal-body .form-panel strong")?.textContent==="Nuevo pago"?"pago":document.querySelector("#actionModal .modal-body .form-panel strong")?.textContent==="Nuevo vehículo"?"vehiculo":"recordatorio");if(e.target.closest("[data-cancel-form]"))bootstrap.Modal.getOrCreateInstance("#actionModal").hide()});
 
@@ -246,3 +252,4 @@ document.querySelector("#installClose")?.addEventListener("click",()=>document.q
 if("serviceWorker"in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
 window.addEventListener("load",()=>setTimeout(()=>document.querySelector("#splash")?.classList.add("hide"),450));
 updateDashboard();
+\ndocument.querySelector("#actionModal")?.addEventListener("hidden.bs.modal",resetAddModal);\n
