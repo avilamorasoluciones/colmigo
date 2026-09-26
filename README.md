@@ -20,7 +20,7 @@ La primera versión es una **PWA estática preparada para GitHub Pages**.
 - SEO básico, Open Graph, robots y sitemap.
 - Identidad visual SVG propia con colores inspirados en Colombia.
 
-## Arquitectura prevista
+## Estado de la demo\n\nLa demo ahora incluye persistencia local, creación y eliminación de registros, preferencias, vista de cuenta, límites Free/Plus, capa de configuración, adaptador API, PWA y navegación responsive. GitHub Pages sigue siendo deliberadamente un entorno sin login y sin datos de servidor.\n\n## Arquitectura prevista
 
 ```
 Android / iOS / Web / PWA
@@ -36,7 +36,7 @@ Android / iOS / Web / PWA
 
 La autenticación obligatoria se activará cuando exista backend. Los pagos digitales deben delegarse a proveedores especializados; **Colmigo no debe almacenar números de tarjeta**. Las confirmaciones de pago deben validarse mediante webhooks en servidor.
 
-## Próximas etapas
+## Documentación técnica\n\n- `docs/PRODUCTION.md`: ruta de GitHub Pages a servidor, Auth, DB, Storage, correo, notificaciones y pagos.\n- `docs/DATA-MODEL.md`: entidades y reglas de datos.\n- `config.js`: configuración segura de demo; en producción se reemplaza durante el despliegue.\n\n## Próximas etapas
 
 1. Backend y cuentas reales.
 2. PostgreSQL y separación segura de datos por usuario.
