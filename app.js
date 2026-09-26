@@ -1,13 +1,13 @@
 /* Colmigo — Demo / production-ready frontend shell
    Arquitectura: UI -> services -> adapter. En producción solo se sustituye el adapter.
 */
-const CONFIG={
+const CONFIG=Object.assign({
   mode:"demo",
   backendUrl:"",
   authRequired:false,
   plan:"free",
   appVersion:"0.2.0"
-};
+},window.COLMIGO_CONFIG||{});
 
 const DEFAULT_DATA={
   tasks:[
