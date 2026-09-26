@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://avilamorasoluciones.github.io/colmigo/sitemap.xml
